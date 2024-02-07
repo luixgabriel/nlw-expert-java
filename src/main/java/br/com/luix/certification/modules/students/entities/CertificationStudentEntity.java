@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,9 @@ public class CertificationStudentEntity {
     private UUID studentID;
     private String technology;
     private int grade;
+
+    @OneToMany
+    @JoinColumn(name = "answer_certification_id", insertable = false, updatable = false)
     List<AnswersCertificationsEntity> answersCertificationsEntity;
 
     @ManyToOne
