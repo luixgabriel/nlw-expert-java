@@ -17,10 +17,16 @@ public class StudentController {
     @Autowired
     private VerifyIfHasCertificationUseCase verifyIfHasCertificationUseCase;
 
-    @PostMapping("")
-    public String verifyIfHasCertification(@RequestBody VerifyHasCertificationDTO verifyHasCertificationDTO){
-        System.out.println("oi");
-        return "Usuário habilitado";
+    @PostMapping("/verifyIfHasCertification")
+    public String verifyIfHasCertification(@RequestBody VerifyHasCertificationDTO verifyHasCertificationDTO) {
+        // Email
+        // Technology
+        var result = this.verifyIfHasCertificationUseCase.execute(verifyHasCertificationDTO);
+        System.out.println(result);
+        if (result) {
+            return "Usuário pode fazer a prova";
+        }
+        return "Usuário já fez a prova";
     }
     
 }
